@@ -31,6 +31,17 @@ const AboutUs = () => {
           voluptatem assumenda qui perspiciatis laboriosam, quia quasi quidem,
           ullam officiis tempore.
         </Typography>
+        <Typography
+          variant="h3"
+          sx={(theme) => ({
+            padding: theme.spacings.lg,
+          })}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui nam
+          accusamus ea. Tempore nulla facere fugit. Ipsa vitae similique,
+          voluptatem assumenda qui perspiciatis laboriosam, quia quasi quidem,
+          ullam officiis tempore. 
+        </Typography>
       </Container>
     </>
   );

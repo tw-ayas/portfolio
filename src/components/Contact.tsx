@@ -17,29 +17,25 @@ const Contact = () => {
 				})}
 			>
 				<TextField
-					sx={(theme) => ({
-						// background: "white",
-						// height:"100px",
+					sx={() => ({
 						width: { xs: "80%", md: "60%" },
 					})}
 					label="Name"
 					size="medium"
 					variant="outlined"
+					required
 				/>
 				<TextField
-					sx={(theme) => ({
-						// background: "white",
-						// height:"100px",
+					sx={() => ({
 						width: { xs: "80%", md: "60%" },
 					})}
 					// id="outlined-basic"
 					label="Email"
 					variant="outlined"
+					required
 				/>
 				<TextField
-					sx={(theme) => ({
-						// background: "white",
-						// height:"100px",
+					sx={() => ({
 						width: { xs: "80%", md: "60%" },
 						// minHeight: "100px",
 					})}
@@ -51,6 +47,7 @@ const Contact = () => {
 						multiline: true,
 						inputComponent: "textarea",
 					}}
+					required
 				/>
 				<Button variant="contained" color="primary" size="large">
 					Send
