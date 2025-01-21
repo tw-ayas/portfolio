@@ -10,57 +10,62 @@ export type ContentWrapperProps = {
 export function ContentWrapper(props: ContentWrapperProps) {
 	const { id, title, children } = props;
 	return (
-		<Box>
-			<Box
-				sx={(theme) => ({
-					p: theme.spacings.xs,
-					paddingTop: theme.spacings.lg,
-					height: "fill-available",
-					maxWidth: theme.maxWidth,
-					display: "flex",
-					margin: "0 auto",
-					alignContent: "center",
-					justifyContent: "center",
-					flexDirection: "column",
-					[theme.breakpoints.up("md")]: {
-						flexDirection: "row",
-						justifyContent: "space-between",
-						p: theme.spacings.sm,
-						alignItems: "center",
-						gap: theme.spacings.sm,
-					},
-				})}
-				id={id}
-			>
-				<Typography
-					variant="h1"
-					sx={(theme) => ({
-						color: theme.palette.text.primary,
-						// width: "30dvw",
-						flexGrow: "1",
-						flexShrink: "1",
-						fontSize: "clamp(1rem 2.5vw 2rem)",
-						textAlign: "center",
-						[theme.breakpoints.up("md")]: {
-							width: "30dvw",
-						},
-					})}
-				>
-					{title}
-				</Typography>
-				<Box
-					sx={{
-						height: "100%",
-						// backgroundColor: "slateblue",
-						width: "100%",
-						flexGrow: "1",
-						flexShrink: "1",
-						overflowY: "hidden",
-					}}
-				>
-					{children}
-				</Box>
-			</Box>
-		</Box>
-	);
+    <Box>
+      <Box
+        sx={(theme) => ({
+          p: theme.spacings.xs,
+          paddingTop: theme.spacings.lg,
+          height: "fill-available",
+          maxWidth: theme.maxWidth,
+          display: "flex",
+          margin: "0 auto",
+          alignContent: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          [theme.breakpoints.up("md")]: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            p: theme.spacings.sm,
+            alignItems: "center",
+            gap: theme.spacings.sm,
+          },
+        })}
+        id={id}
+      >
+        <Typography
+          variant="h1"
+          sx={(theme) => ({
+            color: theme.palette.text.primary,
+            // width: "30dvw",
+            flexGrow: "1",
+            flexShrink: "1",
+            fontSize: "clamp(1rem 2.5vw 2rem)",
+            textAlign: "center",
+            [theme.breakpoints.up("md")]: {
+              width: "30dvw",
+            },
+          })}
+        >
+          {title}
+        </Typography>
+        <Box
+          sx={{
+            height: "100%",
+            // backgroundColor: "slateblue",
+            width: "100%",
+            flexGrow: "1",
+            flexShrink: "1",
+            overflowY: "auto",
+            scrollbarWidth: "none",
+            "&::-webkit-scrollbar":{
+              display: "none",
+              // paddingRight:"10px"
+            }
+          }}
+        >
+          {children}
+        </Box>
+      </Box>
+    </Box>
+  );
 }
