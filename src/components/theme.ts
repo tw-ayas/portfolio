@@ -1,6 +1,5 @@
 import { alpha, createTheme, Theme } from "@mui/material";
-import { Components, PaletteOptions } from "@mui/material/styles";
-import { Shadows } from "@mui/material/styles/shadows";
+import { Components, PaletteOptions, Shadows } from "@mui/material/styles";
 import { breakpoints } from "./breakpoints";
 import { spreadVal } from "./spreadVal";
 
@@ -69,15 +68,15 @@ export function breakpointVal(
 	breakpointsObject: Record<string, number>,
 ) {
 	const minSize = 320;
-	const breakpoints = Object.values(breakpointsObject);
-	const spread = breakpoints[breakpoints.length - 1] - minSize;
+	const breakpointsList = Object.values(breakpointsObject);
+	const spread = breakpointsList[breakpointsList.length - 1] - minSize;
 
-	const entries = {};
+	const entries: Record<string, string | Record<string, string>> = {};
 
-	breakpoints.forEach((breakpoint, index) => {
+	breakpointsList.forEach((breakpoint, index) => {
 		// Get the size between this breakpoint and the previous breakpoint
 		const between =
-			(breakpoint + (breakpoints[index + 1] ?? breakpoint)) / 2;
+			(breakpoint + (breakpointsList[index + 1] ?? breakpoint)) / 2;
 		// Calculate the size of the value
 		const size = Math.max(
 			min,
@@ -97,42 +96,51 @@ export function breakpointVal(
 	return entries;
 }
 
-export const fontSize = (from, to) =>
+export const fontSize = (from: number, to: number) =>
 	breakpointVal("fontSize", from, to, themeBaseDefaults.breakpoints.values);
 
-declare module "@mui/material/styles/createPalette" {
+/**
+ * Correct MUI module augmentation
+ *
+ * Merge all custom theme extensions into a single augmentation for
+ * '@mui/material/styles'. Avoid augmenting internal paths like
+ * '@mui/material/styles/createPalette' which may not be available to TypeScript.
+ */
+declare module "@mui/material/styles" {
+	// Extend background type with our custom props
 	interface TypeBackground {
 		image: string;
 		contrast: string;
 	}
-}
 
-declare module "@mui/material/styles/createTheme" {
+	// Extend ThemeOptions so createTheme accepts our custom fields
 	interface ThemeOptions {
-		spacings: {
-			xxs: string;
-			xs: string;
-			sm: string;
-			md: string;
-			lg: string;
-			xl: string;
-			xxl: string;
+		spacings?: {
+			xxs?: string;
+			xs?: string;
+			sm?: string;
+			md?: string;
+			lg?: string;
+			xl?: string;
+			xxl?: string;
 		};
-		page: {
-			horizontal: string;
-			vertical: string;
+		page?: {
+			horizontal?: string;
+			vertical?: string;
 		};
-		appShell: {
-			headerHeightSm: string;
-			headerHeightMd: string;
-			appBarHeightSm: string;
-			appBarHeightMd: string;
-			appBarInnerHeightMd: string;
-			appBarInnerHeightSm: string;
+		appShell?: {
+			headerHeightSm?: string;
+			headerHeightMd?: string;
+			appBarHeightSm?: string;
+			appBarHeightMd?: string;
+			appBarInnerHeightMd?: string;
+			appBarInnerHeightSm?: string;
 		};
-		shape: { borderRadius: number };
-		maxWidth: string;
+		shape?: { borderRadius?: number };
+		maxWidth?: string;
 	}
+
+	// Extend runtime Theme to include our custom fields
 	interface Theme {
 		spacings: {
 			xxs: string;
@@ -393,9 +401,9 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 	},
 
 	MuiButtonBase: {
-	// styleOverrides: {
-	// 		root: {
-			// },
+		// styleOverrides: {
+		// 		root: {
+		// },
 	},
 
 	MuiButton: {
@@ -403,7 +411,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 		variants: [
 			{
 				props: { variant: "contained", color: "inherit" },
-				style: { backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary},
+				style: { backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary },
 			},
 			{
 				props: { variant: "outlined" },
@@ -445,7 +453,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 				"&.MuiFab-default": {
 					backgroundColor: theme.palette.background.contrast,
 					// "&:hover": {
-						// backgroundColor: theme.palette.background.paper,
+					// backgroundColor: theme.palette.background.paper,
 					// },
 					color: theme.palette.text.primary,
 				},
