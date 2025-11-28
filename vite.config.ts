@@ -13,6 +13,8 @@ export default defineConfig({
       // Ensure Vite can resolve the JSX runtimes from the installed react package
       { find: 'react/jsx-runtime', replacement: path.resolve(__dirname, 'node_modules/react/jsx-runtime.js') },
       { find: 'react/jsx-dev-runtime', replacement: path.resolve(__dirname, 'node_modules/react/jsx-dev-runtime.js') },
+      // Add @ path alias
+      { find: '@', replacement: path.resolve(__dirname, 'src') },
     ],
   },
   server: {

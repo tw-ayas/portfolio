@@ -1,7 +1,7 @@
 // App.js
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import { Pages } from "./components/Pages/Pages";
+import { pages as pagess } from "./components/Pages/Pages";
 import { darkTheme, lightTheme } from "./components/theme";
 import {
 	RouterContext,
@@ -34,7 +34,7 @@ function App() {
 		scrollToPage,
 		scrollerRef,
 	});
-	const pages = Pages.map((page) => `/${page.id}`);
+	const pages = pagess.map((page) => `/${page.id}`);
 
 	useEffect(() => {
 		const popStateListener = windowRef.current

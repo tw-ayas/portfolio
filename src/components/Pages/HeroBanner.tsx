@@ -1,6 +1,6 @@
+import { LinkWrap } from "@/components/utils/LinkWrap";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { fontSize } from "../theme";
 import background_dark from "./backgrounds/background-dark.jpeg";
 import background from "./backgrounds/background.jpg";
 
@@ -122,7 +122,6 @@ export default function HeroBanner(props: HeroBannerProps) {
                     sx={(theme) => ({
                         color: theme.palette.text.primary,
                         lineHeight: 1.02,
-                        ...fontSize(36, 56),
                         fontVariationSettings: "'wght' 900",
                         fontWeight: 900,
                         // responsive max width for long names
@@ -137,11 +136,11 @@ export default function HeroBanner(props: HeroBannerProps) {
                     variant="h5"
                     sx={(theme) => ({
                         color: theme.palette.text.secondary,
-                        ...fontSize(16, 20),
                         maxWidth: { xs: "100%", md: "55%" },
                     })}
                 >
-                    {shortBio} <span aria-hidden="true">{dots}</span>
+                    {shortBio}
+                    <span aria-hidden="true">{dots}</span>
                 </Typography>
 
                 <Stack
@@ -152,33 +151,38 @@ export default function HeroBanner(props: HeroBannerProps) {
                         flexWrap: "wrap",
                     }}
                 >
-                    <Button
-                        variant="contained"
-                        size="large"
-                        onClick={() => scrollTo(contactId)}
-                        aria-label="Contact"
-                        sx={(theme) => ({
-                            boxShadow: theme.shadows[3],
-                            textTransform: "none",
-                        })}
-                    >
-                        Contact
-                    </Button>
+                    <LinkWrap href="/contact">
+                        <Button
+                            variant="contained"
+                            size="large"
+                            onClick={() => scrollTo(contactId)}
+                            aria-label="Contact"
+                            sx={(theme) => ({
+                                boxShadow: theme.shadows[3],
+                                textTransform: "none",
+                            })}
+                        >
+                            Contact
+                        </Button>
+                    </LinkWrap>
 
-                    <Button
-                        variant="outlined"
-                        size="large"
-                        onClick={() => scrollTo(aboutId)}
-                        aria-label="About"
-                        sx={(theme) => ({
-                            color: theme.palette.text.primary,
-                            borderColor: theme.palette.divider,
-                            textTransform: "none",
-                        })}
-                    >
-                        About
-                    </Button>
+                    <LinkWrap href="/about">
+                        <Button
+                            variant="outlined"
+                            size="large"
+                            // onClick={() => scrollTo(aboutId)}
+                            aria-label="About"
+                            sx={(theme) => ({
+                                color: theme.palette.text.primary,
+                                borderColor: theme.palette.divider,
+                                textTransform: "none",
+                            })}
+                        >
+                            About
+                        </Button>
+                    </LinkWrap>
 
+                    {/*<LinkWrap href="/contact">*/}
                     <Button
                         variant="text"
                         size="large"
@@ -190,6 +194,7 @@ export default function HeroBanner(props: HeroBannerProps) {
                     >
                         Email
                     </Button>
+                    {/*</LinkWrap>*/}
                 </Stack>
             </Box>
         </Box>

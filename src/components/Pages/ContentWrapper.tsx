@@ -8,6 +8,7 @@ import {
     useTheme,
 } from "@mui/material";
 import React from "react";
+import { LinkWrap } from "../utils/LinkWrap";
 
 export type ContentWrapperProps = {
     id: string;
@@ -155,14 +156,16 @@ export function ContentWrapper(props: ContentWrapperProps) {
                                 const key = `cta-${id}-${i}`;
                                 if (cta.href) {
                                     return (
-                                        <Button
-                                            key={key}
-                                            href={cta.href}
-                                            variant={cta.variant ?? "contained"}
-                                            size="small"
-                                        >
-                                            {cta.label}
-                                        </Button>
+                                        <LinkWrap href={cta.href} key={key}>
+                                            <Button
+                                                variant={
+                                                    cta.variant ?? "contained"
+                                                }
+                                                size="small"
+                                            >
+                                                {cta.label}
+                                            </Button>
+                                        </LinkWrap>
                                     );
                                 }
                                 return (

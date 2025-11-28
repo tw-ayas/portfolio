@@ -1,9 +1,9 @@
 import { Container } from "@mui/material";
-import React, { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import { RouterContext } from "../utils/RouterContext";
-import { ContentWrapper } from "./ContentWrapper";
+import { ContentWrapper, ContentWrapperProps } from "./ContentWrapper";
 import HeroBanner from "./HeroBanner";
-import { Pages } from "./Pages";
+import { AboutMe, ContactMe, pages } from "./Pages";
 
 /**
  * Content
@@ -24,7 +24,7 @@ import { Pages } from "./Pages";
  */
 
 export function Content() {
-
+    const location = useContext(RouterContext);
     return (
         <Container
             maxWidth={false}
@@ -38,9 +38,17 @@ export function Content() {
                 },
                 // vertical scrolling for sections (snap between sections)
                 overflowX: "hidden",
-                overflowY: "auto",
+                overflowY: "scroll",
                 scrollSnapType: "y mandatory",
+                scrollBehavior: "smooth",
+                WebkitOverflowScrolling: "touch",
                 zIndex: 0,
+                // Hide scrollbar completely
+                scrollbarWidth: "none", // Firefox
+                msOverflowStyle: "none", // IE/Edge
+                "&::-webkit-scrollbar": {
+                    display: "none", // Chrome/Safari/Opera
+                },
                 // ensure children stack vertically and each child is a full-screen section
                 display: "block",
                 // gap between sections if you want (kept 0)
@@ -49,23 +57,30 @@ export function Content() {
                 "& > [data-section]": {
                     // Each section should hold the device height and width minus navigation
                     width: "100vw",
+                    minHeight: {
+                        xs: `calc(100dvh - ${theme.appShell.appBarHeightSm})`,
+                        md: `calc(100dvh - ${theme.appShell.appBarHeightMd})`,
+                    },
                     height: {
                         xs: `calc(100dvh - ${theme.appShell.appBarHeightSm})`,
                         md: `calc(100dvh - ${theme.appShell.appBarHeightMd})`,
                     },
-                    scrollSnapAlign: "center",
+                    scrollSnapAlign: "start",
+                    scrollSnapStop: "always",
                     // allow horizontal overflow inside the section; vertical overflow inside section hidden
                     overflowX: "auto",
                     overflowY: "hidden",
                     // make the section act as a horizontal canvas (so children can be wider)
                     display: "block",
                     background: theme.palette.background.paper,
+                    flexShrink: 0,
                 },
                 // alternate backgrounds for even sections for subtle contrast
                 "& > [data-section]:nth-of-type(even)": {
                     background: theme.palette.background.default,
                 },
             })}
+            ref={location?.scrollerRef}
         >
             {/* First section: hero */}
             <section data-section id="hero-section" aria-label="hero">
@@ -73,7 +88,7 @@ export function Content() {
             </section>
 
             {/* Render the rest of the pages as sections */}
-            {Pages.map((page) => (
+            {pages.map((page) => (
                 <section
                     data-section
                     id={`section-${page.id}`}

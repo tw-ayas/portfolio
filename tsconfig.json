@@ -1,37 +1,39 @@
 {
-	"compilerOptions": {
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-		"target": "ES2022",
-		"module": "ESNext",
-		"skipLibCheck": true,
+    "compilerOptions": {
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+        "target": "ES2022",
+        "module": "ESNext",
+        "skipLibCheck": true,
 
-		"jsx": "react-jsx",
+        "jsx": "react-jsx",
 
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": true,
-		"isolatedModules": true,
-		"moduleDetection": "force",
-		"noEmit": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "noEmit": true,
 
-		"lib": ["DOM", "DOM.Iterable", "ES2023"],
-		"allowJs": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"noImplicitAny": false,
-		"incremental": true,
-		"baseUrl": "src"
-	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		"**/*.d.ts",
-		"packages/*",
-		"pages/middleware.ts",
-		"next-env.d.ts",
-		"vite.config.ts",
-		"src"
-	],
-	"exclude": ["node_modules"]
+        "lib": ["DOM", "DOM.Iterable", "ES2023"],
+        "allowJs": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "noImplicitAny": false,
+        "incremental": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.d.ts",
+        "packages/*",
+        "pages/middleware.ts",
+        "next-env.d.ts",
+        "vite.config.ts",
+        "src"
+    ],
+    "exclude": ["node_modules"]
 }

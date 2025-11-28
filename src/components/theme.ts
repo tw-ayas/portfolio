@@ -171,30 +171,30 @@ declare module "@mui/material/styles" {
 const lightPalette: PaletteOptions = {
 	mode: "light",
 	primary: {
-		main: "#ccd5ae",
+		main: "#2563eb", // Modern blue
 		contrastText: "#ffffff",
 	},
 	secondary: {
-		main: "#e9edc9",
+		main: "#64748b", // Slate gray
 		contrastText: "#ffffff",
 	},
 	background: {
-		default: "#fefae0",
-		paper: "#faedcd",
-		contrast: "#d4a373",
+		default: "#f8fafc", // Clean off-white
+		paper: "#ffffff",
+		contrast: "#d4a373", // Sky blue accent
 	},
-	divider: "#00000015",
+	divider: "#e2e8f0",
 	success: {
-		main: "#00a103",
-		light: "#00b503",
+		main: "#10b981",
+		light: "#34d399",
 	},
 	action: {
-		hoverOpacity: 0.12,
+		hoverOpacity: 0.08,
 	},
 	text: {
-		primary: "#0F0F10",
-		secondary: "#03031775",
-		disabled: "#03031735",
+		primary: "#0f172a", // Deep slate
+		secondary: "#64748b",
+		disabled: "#cbd5e1",
 	},
 };
 
@@ -274,21 +274,21 @@ const createThemeWithPalette = (palette: PaletteOptions) => {
 			},
 			fontWeightBold: 600,
 			body1: {
-				...fontSize(12, 14),
+				...fontSize(14, 18),
 				lineHeight: 1.5,
 			},
 			subtitle1: {
-				...fontSize(11, 13),
+				...fontSize(14, 16),
 				fontWeight: 400,
 				fontVariationSettings: "'wght' 400",
 				lineHeight: 1.2,
 			},
 			body2: {
-				...fontSize(12, 13),
+				...fontSize(12, 14),
 				lineHeight: 1.5,
 			},
 			subtitle2: {
-				...fontSize(10, 11),
+				...fontSize(10, 12),
 				fontWeight: 400,
 				fontVariationSettings: "'wght' 400",
 				lineHeight: 1.2,
